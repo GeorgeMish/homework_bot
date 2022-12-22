@@ -6,7 +6,6 @@ import os
 import sys
 import exceptions
 from dotenv import load_dotenv
-from http import HTTPStatus
 
 
 load_dotenv()
@@ -35,7 +34,7 @@ def check_tokens():
 
 
 def send_message(bot, message):
-    """Отправляет сообщение в Telegram чат."""
+    """Функция отправляет сообщение в Telegram чат."""
     try:
         bot.send_message(
             chat_id=TELEGRAM_CHAT_ID,
@@ -58,20 +57,21 @@ def get_api_answer(timestamp):
             headers=HEADERS,
             params={"from_date": timestamp}
         )
-        logging.debug("Получили ответ от API Практикума")
+        logging.debug("Получен ответ от API")
     except requests.RequestException as error:
-        logging.error(f"Получили ошибку при запросе {error}")
-
+        logging.error(f"Получена ошибка при запросе {error}")
+        raise exceptions.ApiRequestException("Ошибка при запросе")
     if response.status_code != 200:
+        logging.error('Ошибка при доступе к API')
         raise exceptions.InvalidResponseCode(
-            'Ошибка при доступе к API Яндекс.Домашки. '
+            'Получена ошибка при доступе к API Яндекс.Домашки. '
             f'status_code {response.status_code}'
         )
     return response.json()
 
 
 def check_response(response):
-    """Проверяет ответ API на корректность.
+    """Функция проверяет ответ API на корректность.
     Если ответ API корректен - функция врзвращает список домашних работ
     """
     logging.debug('Начало проверки ответа от API')
@@ -134,7 +134,7 @@ def main():
             logging.info('Обновлений не найдено')
             timestamp = response.get('current_date')
         except TypeError as error:
-            message = f'Неверный тип данных: {error}'
+            message = f'Некорректный тип данных: {error}'
             logging.error(message)
         except KeyError as error:
             message = f'Ошибка доступа по ключу: {error}'
@@ -143,7 +143,7 @@ def main():
             message = f'Не удалось отправить сообщение в Telegram - {error}'
             logging.error(message)
         except exceptions.ConnectinError as error:
-            message = f'ENDPOINT недоступен. Код ответа API: {error}'
+            message = f'API недоступен. Код ответа API: {error}'
             logging.error(message)
         except exceptions.ProgramError as error:
             message = f'Сбой в работе программы: {error}'

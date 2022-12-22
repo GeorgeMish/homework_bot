@@ -1,22 +1,28 @@
 class TelegramError(Exception):
+    """Сообщение не отправляется в Telegram."""
+
     pass
 
 
 class InvalidResponseCode(Exception):
+    """Запрос к API Яндекс.Домашки не проходит."""
+
     pass
 
 
 class ConnectinError(Exception):
-    pass
+    """API недоступен, но отвечает."""
 
-
-class EmptyResponseFromAPI(Exception):
-    pass
-
-
-class ProgramError(Exception):
     pass
 
 
 class ApiRequestException(Exception):
+    """Получена ошибка при запросе к API."""
+
+    pass
+
+
+class ProgramError(Exception):
+    """Любой другой сбой в программе."""
+
     pass
