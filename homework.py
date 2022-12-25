@@ -8,7 +8,7 @@ import telegram
 from dotenv import load_dotenv
 
 import exceptions
-#импорты отсортированы с помощью isort
+#  импорты отсортированы с помощью isort
 
 
 load_dotenv()
