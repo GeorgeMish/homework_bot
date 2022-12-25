@@ -1,12 +1,13 @@
-import telegram
-import time
-import requests
 import logging
 import os
 import sys
-import exceptions
+import time
+
+import requests
+import telegram
 from dotenv import load_dotenv
 
+import exceptions
 
 load_dotenv()
 PRACTICUM_TOKEN = os.getenv('PRACTICUM_TOKEN')
@@ -124,7 +125,7 @@ def main():
 
     while True:
         try:
-            response = get_api_answer(timestamp - 30 * 86400)
+            response = get_api_answer(timestamp)
             homework_list = check_response(response)
             homework = homework_list[0]
             message = parse_status(homework)
