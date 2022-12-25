@@ -8,6 +8,8 @@ import telegram
 from dotenv import load_dotenv
 
 import exceptions
+#импорты отсортированы с помощью isort
+
 
 load_dotenv()
 PRACTICUM_TOKEN = os.getenv('PRACTICUM_TOKEN')
