@@ -35,35 +35,12 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-- Примените миграции:
-
-```
-python3 manage.py migrate
-```
-
-- В папке с файлом manage.py выполните команду:
-
-```
-python3 manage.py runserver
-```
-
-Создать файл .env в этой директории и укажите собственные токены:
+Создайту файл .env в этой директории и укажите собственные токены:
 
 ```
 PRACTICUM_TOKEN = токен Яндекс практикум.
 TELEGRAM_TOKEN = токен вашего бота Telegram полученный от BotFather.
 TELEGRAM_CHAT_ID = id вашего чата в Telegram.
-```
-- Примените миграции:
-
-```
-python3 manage.py migrate
-```
-
-- В папке с файлом manage.py выполните команду:
-
-```
-python3 manage.py runserver
 ```
 
 ### Получение токенов:
@@ -77,6 +54,12 @@ python3 manage.py runserver
 Получите id своего чата у бота Userinfobot:<br>
 <a href="https://t.me/userinfobot" target="_blank">Получить свой id</a>
 
+
+- Запуститe проект:
+
+```
+python homework.py
+```
 
 ### Автор проекта:
 Юрий Мишкевич
